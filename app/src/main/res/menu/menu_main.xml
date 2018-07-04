@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.tungnguyen.adsrobo.MainActivity">
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id = "@+id/admob_baner"
+        android:orderInCategory="100"
+        android:title="@string/admob_baner"
+        app:showAsAction="never"/>
+
+    <item
+        android:id = "@+id/admob_intertitial"
+        android:orderInCategory="100"
+        android:title="@string/admob_intertitial"
+        app:showAsAction="never"/>
+
+    <item
+        android:id = "@+id/admob_rewardVideo"
+        android:orderInCategory="100"
+        android:title="@string/admob_reward_video"
+        app:showAsAction="never"/>
+</menu>
