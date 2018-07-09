@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "572846232746",
+    "firebase_url": "https://adrobo-45dfe.firebaseio.com",
+    "project_id": "adrobo-45dfe",
+    "storage_bucket": "adrobo-45dfe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572846232746:android:2ca453f828bd6fa1",
+        "android_client_info": {
+          "package_name": "com.example.tungnguyen.adsrobo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572846232746-b4g672eubqplrgvd72b6j917b8kd8esc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGBr7vImt5_3s874y_pYv_Uo7wh-uWUCQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,12 +4,6 @@
     tools:context="com.example.tungnguyen.adsrobo.MainActivity">
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-
-    <item
         android:id = "@+id/admob_baner"
         android:orderInCategory="100"
         android:title="@string/admob_baner"
@@ -19,6 +13,12 @@
         android:id = "@+id/admob_intertitial"
         android:orderInCategory="100"
         android:title="@string/admob_intertitial"
+        app:showAsAction="never"/>
+
+    <item
+        android:id = "@+id/admob_intertitial_video"
+        android:orderInCategory="100"
+        android:title="@string/admob_intertitial_video"
         app:showAsAction="never"/>
 
     <item

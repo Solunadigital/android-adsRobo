@@ -26,8 +26,11 @@ public class AdmobBannerActivity extends AppCompatActivity {
         MobileAds.initialize(this,
                 "ca-app-pub-3940256099942544~3347511713");
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("").build();
-        mAdView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("A0A447EA9B9E9664B51231A46D0A5777").build();
         mAdView.loadAd(adRequest);
     }
+
+    // TODO: Create backgroud image make it look like popular app
+    // Create tabbar
+    //
 }

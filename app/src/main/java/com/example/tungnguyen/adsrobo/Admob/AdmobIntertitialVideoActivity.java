@@ -8,18 +8,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.tungnguyen.adsrobo.R;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
 
-public class AdmobRewardActivity extends AppCompatActivity {
-    private RewardedVideoAd mRewardedVideoAd;
+public class AdmobIntertitialVideoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admob_reward);
+        setContentView(R.layout.activity_admob_intertitial_video);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
 }

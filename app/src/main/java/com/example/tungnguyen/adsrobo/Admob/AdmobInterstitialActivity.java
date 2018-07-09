@@ -1,15 +1,22 @@
 package com.example.tungnguyen.adsrobo.Admob;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.example.tungnguyen.adsrobo.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 public class AdmobInterstitialActivity extends AppCompatActivity {
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,15 +24,22 @@ public class AdmobInterstitialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admob_interstitial);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        MobileAds.initialize(this, getString(R.string.test_admob_appID));
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.test_interstitial_unit_id));
+        mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice("A0A447EA9B9E9664B51231A46D0A5777").build());
+        showInterstitialAds();
     }
 
+    private void showInterstitialAds() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                }
+            }
+        }, 10000);
+    }
 }

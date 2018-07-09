@@ -2,20 +2,15 @@ package com.example.tungnguyen.adsrobo;
 
 
 import com.example.tungnguyen.adsrobo.Admob.AdmobBannerActivity;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-
+import com.example.tungnguyen.adsrobo.Admob.AdmobInterstitialActivity;
+import com.example.tungnguyen.adsrobo.Admob.AdmobIntertitialVideoActivity;
+import com.example.tungnguyen.adsrobo.Admob.AdmobRewardActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.TextView;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
     @Override
@@ -35,25 +29,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Log.d("Menu", "Setting button clicked!");
-            return true;
-        }
         switch (id) {
-            case R.id.action_settings:
-                ///var intent = Intent()
-                break;
             case R.id.admob_baner:
                 Intent bannerIntent = new Intent(this, AdmobBannerActivity.class);
                 startActivity(bannerIntent);
+                return true;
             case R.id.admob_intertitial:
-                break;
+                Intent interstitialIntent = new Intent(this, AdmobInterstitialActivity.class);
+                startActivity(interstitialIntent);
+                return true;
+            case R.id.admob_intertitial_video:
+                Intent intertitialVideoIntent = new Intent(this, AdmobIntertitialVideoActivity.class);
+                startActivity(intertitialVideoIntent);
+                return true;
             case R.id.admob_rewardVideo:
-                break;
-
-                default:
-                    break;
+                Intent rewardVideoIntent = new Intent(this, AdmobRewardActivity.class);
+                startActivity(rewardVideoIntent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+
     }
 }
