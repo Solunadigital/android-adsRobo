@@ -18,6 +18,7 @@ public class MyFirebaseInstanceIDService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         Log.d(TAG, "onMessageReceived: May da chay vao day hahaha");
         Intent intent = new Intent(this, AdmobInterstitialActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 

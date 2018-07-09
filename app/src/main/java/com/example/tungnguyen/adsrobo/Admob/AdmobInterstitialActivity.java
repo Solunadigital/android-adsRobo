@@ -1,14 +1,11 @@
 package com.example.tungnguyen.adsrobo.Admob;
 
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
+import android.widget.Toast;
 
 import com.example.tungnguyen.adsrobo.R;
 import com.google.android.gms.ads.AdRequest;
@@ -38,6 +35,8 @@ public class AdmobInterstitialActivity extends AppCompatActivity {
             public void run() {
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
+                    Log.d("mInterstitialAd", "run: may co chay vao day khong");
+                    Toast.makeText(AdmobInterstitialActivity.class,"May Co chay vao day khong",2);
                 }
             }
         }, 10000);
