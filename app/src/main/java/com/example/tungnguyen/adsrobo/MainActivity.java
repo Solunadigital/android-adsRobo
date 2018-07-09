@@ -1,10 +1,6 @@
 package com.example.tungnguyen.adsrobo;
 
 
-import com.example.tungnguyen.adsrobo.Admob.AdmobBannerActivity;
-import com.example.tungnguyen.adsrobo.Admob.AdmobInterstitialActivity;
-import com.example.tungnguyen.adsrobo.Admob.AdmobIntertitialVideoActivity;
-import com.example.tungnguyen.adsrobo.Admob.AdmobRewardActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,12 +8,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.tungnguyen.adsrobo.Admob.AdmobBannerActivity;
+import com.example.tungnguyen.adsrobo.Admob.AdmobInterstitialActivity;
+import com.example.tungnguyen.adsrobo.Admob.AdmobIntertitialVideoActivity;
+import com.example.tungnguyen.adsrobo.Admob.AdmobRewardActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("Tag firebase token", "onNewToken: " + FirebaseInstanceId.getInstance().getToken());
     }
 
     @Override
