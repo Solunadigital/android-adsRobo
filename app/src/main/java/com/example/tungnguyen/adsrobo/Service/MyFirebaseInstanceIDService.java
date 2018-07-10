@@ -1,6 +1,8 @@
 package com.example.tungnguyen.adsrobo.Service;
 
 import android.content.Intent;
+import android.drm.DrmStore;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.example.tungnguyen.adsrobo.Admob.AdmobInterstitialActivity;
@@ -8,27 +10,41 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 public class MyFirebaseInstanceIDService extends FirebaseMessagingService {
-
-
     private static final String TAG = "MyFirebaseIIDService";
-
+    private ActionType actionType = ActionType.SHOW;
+    private String appID = "";
+    private String unitID = "";
+    private String network = "";
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        Log.d(TAG, "onMessageReceived: May da chay vao day hahaha");
-        Intent intent = new Intent(this, AdmobInterstitialActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        Map<String, String> data = remoteMessage.getData();
+        appID = data.get("app_id");
+        unitID = data.get("unit_id");
+        network = data.get("network");
+        int actionValue = Integer.parseInt(data.get("action"));
+        actionType = ActionType.values()[actionValue];
+        switch (actionType) {
+            case SHOW:
+                Intent intent = new Intent(this, AdmobInterstitialActivity.class);
+                intent.putExtra("appID", appID);
+                intent.putExtra("unitID", unitID);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            case CLOSE:
+                //TODO: Kill app
+                break;
+            case INSTALL:
+                //TODO: Download and install app
+                break;
+            case COUNT:
+                //TODO: Count app still alive
+                break;
+        }
     }
-
-    /**
-     * Called if InstanceID token is updated. This may occur if the security of
-     * the previous token had been compromised. Note that this is called when the InstanceID token
-     * is initially generated so this is where you would retrieve the token.
-     */
-    // [START refresh_token]
-
 
     @Override
     public void onNewToken(String s) {
@@ -37,17 +53,20 @@ public class MyFirebaseInstanceIDService extends FirebaseMessagingService {
         Log.d(TAG, "onNewToken: " + FirebaseInstanceId.getInstance().getToken());
     }
 
-    // [END refresh_token]
-
-    /**
-     * Persist token to third-party servers.
-     *
-     * Modify this method to associate the user's FCM InstanceID token with any server-side account
-     * maintained by your application.
-     *
-     * @param token The new token.
-     */
     private void sendRegistrationToServer(String token) {
         // TODO: Implement this method to send token to your app server.
     }
+
+    private void killApp() {
+        // TODO: Kill app
+    }
+
+    private void countNumberDeviceStillLive() {
+        //TODO: Call API here
+    }
+
+    private void downloadAndInstallApp(String appURL) {
+        //TODO: Download apk file and install programmatically
+    }
+
 }
