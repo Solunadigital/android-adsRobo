@@ -1,14 +1,11 @@
 package com.example.tungnguyen.adsrobo.Admob;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.tungnguyen.adsrobo.MainActivity;
 import com.example.tungnguyen.adsrobo.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -18,8 +15,8 @@ import com.google.android.gms.ads.MobileAds;
 public class AdmobInterstitialActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private Boolean isDevelopMode = true;
-    public static String appID = "";
-    public static String interstitialUnitID = "";
+    public static String appID;
+    public static String interstitialUnitID;
     AdRequest request;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
