@@ -46,6 +46,7 @@ public class AdmobInterstitialActivity extends AppCompatActivity {
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
+                super.onAdClosed();
                 reloadInterstitial();
             }
 

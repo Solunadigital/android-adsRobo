@@ -21,19 +21,25 @@ public class MyFirebaseInstanceIDService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+        Log.d(TAG, "onMessageReceived: Co chay vao day khogn");
         Map<String, String> data = remoteMessage.getData();
         appID = data.get("app_id");
         unitID = data.get("unit_id");
         network = data.get("network");
         int actionValue = Integer.parseInt(data.get("action"));
+        Intent intent = new Intent(this, AdmobInterstitialActivity.class);
+        intent.putExtra("appID", appID);
+        intent.putExtra("unitID", unitID);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         actionType = ActionType.values()[actionValue];
         switch (actionType) {
             case SHOW:
-                Intent intent = new Intent(this, AdmobInterstitialActivity.class);
-                intent.putExtra("appID", appID);
-                intent.putExtra("unitID", unitID);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+//                Intent intent = new Intent(this, AdmobInterstitialActivity.class);
+//                intent.putExtra("appID", appID);
+//                intent.putExtra("unitID", unitID);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
             case CLOSE:
                 //TODO: Kill app
                 break;

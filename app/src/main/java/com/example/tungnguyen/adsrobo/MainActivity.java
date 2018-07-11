@@ -13,6 +13,7 @@ import com.example.tungnguyen.adsrobo.Admob.AdmobInterstitialActivity;
 import com.example.tungnguyen.adsrobo.Admob.AdmobIntertitialVideoActivity;
 import com.example.tungnguyen.adsrobo.Admob.AdmobRewardActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseMessaging.getInstance().subscribeToTopic("admob");
         Log.d("Tag firebase token", "onNewToken: " + FirebaseInstanceId.getInstance().getToken());
     }
 
