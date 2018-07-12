@@ -1,11 +1,11 @@
 package com.example.tungnguyen.adsrobo.Service;
 
 import android.content.Intent;
-import android.drm.DrmStore;
-import android.os.Bundle;
 import android.util.Log;
 
+import com.example.tungnguyen.adsrobo.Admob.AdmobBannerActivity;
 import com.example.tungnguyen.adsrobo.Admob.AdmobInterstitialActivity;
+import com.example.tungnguyen.adsrobo.Admob.AdmobRewardActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -15,6 +15,7 @@ import java.util.Map;
 public class MyFirebaseInstanceIDService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseIIDService";
     private ActionType actionType = ActionType.SHOW;
+    private AdmobType admobType = AdmobType.INTERSTITIAL;
     private String appID = "";
     private String unitID = "";
     private String network = "";
@@ -27,19 +28,40 @@ public class MyFirebaseInstanceIDService extends FirebaseMessagingService {
         unitID = data.get("unit_id");
         network = data.get("network");
         int actionValue = Integer.parseInt(data.get("action"));
-        Intent intent = new Intent(this, AdmobInterstitialActivity.class);
-        intent.putExtra("appID", appID);
-        intent.putExtra("unitID", unitID);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
         actionType = ActionType.values()[actionValue];
+        int admodTypeValue = Integer.parseInt(data.get("ads_type"));
+        admobType = AdmobType.values()[admodTypeValue];
+        switch (admobType) {
+            case BANNER:
+                Intent bannerIntent = new Intent(this, AdmobBannerActivity.class);
+                bannerIntent.putExtra("appID", appID);
+                bannerIntent.putExtra("unitID", unitID);
+                bannerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                bannerIntent.putExtra("isDevelopMode", true);
+                startActivity(bannerIntent);
+            case INTERSTITIAL:
+                Intent intent = new Intent(this, AdmobInterstitialActivity.class);
+                intent.putExtra("appID", appID);
+                intent.putExtra("unitID", unitID);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("isDevelopMode",true);
+                startActivity(intent);
+            case REWARDVIDEO:
+                Intent rewardVideo = new Intent(this, AdmobRewardActivity.class);
+                rewardVideo.putExtra("appID", appID);
+                rewardVideo.putExtra("unitID", unitID);
+                rewardVideo.putExtra("isDevelopMode",true);
+                rewardVideo.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(rewardVideo);
+        }
+
         switch (actionType) {
             case SHOW:
-//                Intent intent = new Intent(this, AdmobInterstitialActivity.class);
-//                intent.putExtra("appID", appID);
-//                intent.putExtra("unitID", unitID);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(intent);
+                Intent intent = new Intent(this, AdmobInterstitialActivity.class);
+                intent.putExtra("appID", appID);
+                intent.putExtra("unitID", unitID);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             case CLOSE:
                 //TODO: Kill app
                 break;

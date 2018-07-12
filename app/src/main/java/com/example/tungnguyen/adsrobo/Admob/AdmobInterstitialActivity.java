@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.example.tungnguyen.adsrobo.R;
 import com.google.android.gms.ads.AdListener;
@@ -25,19 +24,25 @@ public class AdmobInterstitialActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Get data from intent
-        appID = getIntent().getStringExtra("appID");
-        interstitialUnitID = getIntent().getStringExtra("unitID");
-        Log.d("Data", "onCreate: " +appID + interstitialUnitID);
+        String applicationID = getIntent().getStringExtra("appID");
+        String unitID = getIntent().getStringExtra("unitID");
+        isDevelopMode = getIntent().getBooleanExtra("isDevelopMode", true);
         mInterstitialAd = new InterstitialAd(this);
-        if (isDevelopMode) {
-            MobileAds.initialize(this, getString(R.string.test_admob_appID));
-            mInterstitialAd.setAdUnitId(getString(R.string.test_interstitial_unit_id));
-            request = new AdRequest.Builder().addTestDevice("A0A447EA9B9E9664B51231A46D0A5777").build();
-        } else {
-            MobileAds.initialize(this, appID);
-            mInterstitialAd.setAdUnitId(interstitialUnitID);
-            request = new AdRequest.Builder().build();
-        }
+        appID = isDevelopMode ?
+                applicationID :
+                getString(R.string.test_admob_appID);
+        interstitialUnitID = isDevelopMode ?
+                unitID :
+                getString(R.string.test_interstitial_unit_id);
+        configInterstitialAds(appID, interstitialUnitID);
+    }
+
+    private void configInterstitialAds(String appID, String interstitialUnitID){
+        MobileAds.initialize(this, appID);
+        mInterstitialAd.setAdUnitId(interstitialUnitID);
+        request = isDevelopMode ?
+                    new AdRequest.Builder().addTestDevice("A0A447EA9B9E9664B51231A46D0A5777").build() :
+                    new AdRequest.Builder().build();
         mInterstitialAd.loadAd(request);
         showInterstitialAds();
         mInterstitialAd.setAdListener(new AdListener() {

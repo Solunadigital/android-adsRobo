@@ -1,21 +1,19 @@
 package com.example.tungnguyen.adsrobo.Admob;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.example.tungnguyen.adsrobo.R;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 public class AdmobBannerActivity extends AppCompatActivity {
-
     private AdView mAdView;
+    private String appId;
+    private String bannerUnitId;
+    private Boolean isDevelopMode = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +24,21 @@ public class AdmobBannerActivity extends AppCompatActivity {
         MobileAds.initialize(this,
                 "ca-app-pub-3940256099942544~3347511713");
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("A0A447EA9B9E9664B51231A46D0A5777").build();
-        mAdView.loadAd(adRequest);
+        appId = isDevelopMode ?
+                getString(R.string.test_admob_appID) :
+                getIntent().getStringExtra("appID");
+        bannerUnitId = isDevelopMode ?
+                getString(R.string.test_banner_ad_unit_id) :
+                getIntent().getStringExtra("unitID");
+        configBanner(appId, bannerUnitId);
     }
 
-    // TODO: Create backgroud image make it look like popular app
-    // Create tabbar
-    //
+    private void configBanner(String appID, String unitId) {
+        MobileAds.initialize(this, appID);
+        mAdView.setAdUnitId(unitId);
+        AdRequest adRequest = isDevelopMode ?
+                new AdRequest.Builder().addTestDevice("A0A447EA9B9E9664B51231A46D0A5777").build() :
+                new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
 }
