@@ -21,6 +21,7 @@ public class AdmobBannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admob_banner);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
         MobileAds.initialize(this,
                 "ca-app-pub-3940256099942544~3347511713");
         mAdView = findViewById(R.id.adView);
@@ -36,9 +37,7 @@ public class AdmobBannerActivity extends AppCompatActivity {
     private void configBanner(String appID, String unitId) {
         MobileAds.initialize(this, appID);
         mAdView.setAdUnitId(unitId);
-        AdRequest adRequest = isDevelopMode ?
-                new AdRequest.Builder().addTestDevice("A0A447EA9B9E9664B51231A46D0A5777").build() :
-                new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
 }

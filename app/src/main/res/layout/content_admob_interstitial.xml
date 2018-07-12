@@ -1,11 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Admob.AdmobInterstitialActivity"
-    tools:showIn="@layout/activity_admob_interstitial">
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    tools:context=".Admob.AdmobInterstitialActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scaleType= "fitXY"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/admob_reward_video"
+        android:src="@drawable/map" />
+</RelativeLayout>

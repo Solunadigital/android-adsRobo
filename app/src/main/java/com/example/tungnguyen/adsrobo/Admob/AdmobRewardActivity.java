@@ -3,7 +3,6 @@ package com.example.tungnguyen.adsrobo.Admob;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.example.tungnguyen.adsrobo.R;
 import com.google.android.gms.ads.AdRequest;
@@ -20,8 +19,10 @@ public class AdmobRewardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admob_reward);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        //setSupportActionBar(toolbar);
+//        getSupportActionBar().hide();
         /// Get bundle
         appID = isDevMode ? getString(R.string.test_admob_appID) : getIntent().getStringExtra("appID");
         unitID = isDevMode ? getString(R.string.test_reward_video_unit_id) : getIntent().getStringExtra("unitID");

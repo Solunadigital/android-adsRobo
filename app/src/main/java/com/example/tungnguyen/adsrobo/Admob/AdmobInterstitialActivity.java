@@ -23,27 +23,25 @@ public class AdmobInterstitialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admob_interstitial);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
         // Get data from intent
         String applicationID = getIntent().getStringExtra("appID");
         String unitID = getIntent().getStringExtra("unitID");
         isDevelopMode = getIntent().getBooleanExtra("isDevelopMode", true);
         mInterstitialAd = new InterstitialAd(this);
         appID = isDevelopMode ?
-                applicationID :
-                getString(R.string.test_admob_appID);
+                getString(R.string.test_admob_appID) : applicationID ;
+
         interstitialUnitID = isDevelopMode ?
-                unitID :
-                getString(R.string.test_interstitial_unit_id);
+                getString(R.string.test_interstitial_unit_id): unitID ;
+
         configInterstitialAds(appID, interstitialUnitID);
     }
 
     private void configInterstitialAds(String appID, String interstitialUnitID){
         MobileAds.initialize(this, appID);
         mInterstitialAd.setAdUnitId(interstitialUnitID);
-        request = isDevelopMode ?
-                    new AdRequest.Builder().addTestDevice("A0A447EA9B9E9664B51231A46D0A5777").build() :
-                    new AdRequest.Builder().build();
-        mInterstitialAd.loadAd(request);
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
         showInterstitialAds();
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
