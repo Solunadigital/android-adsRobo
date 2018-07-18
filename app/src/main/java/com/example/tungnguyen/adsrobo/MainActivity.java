@@ -12,6 +12,7 @@ import com.example.tungnguyen.adsrobo.Admob.AdmobBannerActivity;
 import com.example.tungnguyen.adsrobo.Admob.AdmobInterstitialActivity;
 import com.example.tungnguyen.adsrobo.Admob.AdmobIntertitialVideoActivity;
 import com.example.tungnguyen.adsrobo.Admob.AdmobRewardActivity;
+import com.example.tungnguyen.adsrobo.Unity.UnityInterstitialActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intertitialVideoIntent);
                 return true;
             case R.id.admob_rewardVideo:
-                Intent rewardVideoIntent = new Intent(this, AdmobRewardActivity.class);
+                Intent rewardVideoIntent = new Intent(this, UnityInterstitialActivity.class);
                 startActivity(rewardVideoIntent);
                 return true;
             default:

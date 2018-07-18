@@ -13,7 +13,7 @@ import com.google.android.gms.ads.MobileAds;
 
 public class AdmobInterstitialActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
-    private Boolean isDevelopMode = true;
+    private Boolean isDevelopMode = false;
     public static String appID;
     public static String interstitialUnitID;
     AdRequest request;
@@ -21,20 +21,10 @@ public class AdmobInterstitialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admob_interstitial);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().hide();
         // Get data from intent
-        String applicationID = getIntent().getStringExtra("appID");
-        String unitID = getIntent().getStringExtra("unitID");
-        isDevelopMode = getIntent().getBooleanExtra("isDevelopMode", true);
         mInterstitialAd = new InterstitialAd(this);
-        appID = isDevelopMode ?
-                getString(R.string.test_admob_appID) : applicationID ;
-
-        interstitialUnitID = isDevelopMode ?
-                getString(R.string.test_interstitial_unit_id): unitID ;
-
+        appID = getIntent().getStringExtra("appID");
+        interstitialUnitID = getIntent().getStringExtra("unitID");
         configInterstitialAds(appID, interstitialUnitID);
     }
 
@@ -64,8 +54,15 @@ public class AdmobInterstitialActivity extends AppCompatActivity {
             public void run() {
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
+                    final Handler closeHandle = new Handler();
+                    closeHandle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            finishAndRemoveTask();
+                        }
+                    }, 5000);
                 } else {
-                    reloadInterstitial();
+                    finishAndRemoveTask();
                 }
             }
         }, 10000);

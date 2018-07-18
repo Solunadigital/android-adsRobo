@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
-    tools:context=".Admob.AdmobInterstitialActivity">
+    tools:context=".Admob.AdmobRewardActivity">
 
     <ImageView
         android:layout_width="fill_parent"
@@ -10,5 +10,5 @@
         android:scaleType= "fitXY"
         android:adjustViewBounds="true"
         android:contentDescription="@string/admob_reward_video"
-        android:src="@drawable/map"/>
+        android:src="@drawable/map" />
 </RelativeLayout>
